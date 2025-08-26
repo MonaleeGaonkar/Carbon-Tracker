@@ -1,0 +1,353 @@
+/* Black + Shiny Lime theme
+   Header updated to use a high-resolution image of a bunch of leaves (clustered foliage).
+   This file only changes styling. The HTML structure and JS remain exactly as provided.
+*/
+
+/* Color tokens */
+:root{
+  --bg-900: #000000;
+  --bg-800: #0a0a0a;
+  --panel: rgba(12,12,12,0.85);
+  --lime-1: #A8FF00;    /* shiny */
+  --lime-2: #C7FF4C;    /* accent */
+  --lime-3: #76b900;    /* darker lime */
+  --muted: #3eaf02;
+  --glass: rgba(255,255,255,0.02);
+  --card-border: rgba(37, 112, 2, 0.405);
+  --shadow-dark: rgba(10, 150, 0, 0.549);
+  --text: #299e02;
+  --grad-alpha: 0.06; /* default subtle alpha for animated background */
+}
+
+/* Animated gradient keyframes */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Base body */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: radial-gradient(1200px 800px at 10% 10%, rgba(168,255,0,0.03), transparent 5%),
+              radial-gradient(1000px 600px at 90% 90%, rgba(168,255,0,0.02), transparent 4%),
+              linear-gradient(180deg, var(--bg-900) 0%, #071107 60%);
+  color: var(--text);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* particles-js canvas sits behind everything */
+#particles-js {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  top: 0;
+  left: 0;
+}
+
+/* Header */
+/* Replaced the previous single-leaf photo with a clustered leaves image (bunch of leaves).
+   Kept a dark lime-tinted overlay so header text remains highly readable. */
+header {
+  background-image:
+    linear-gradient(180deg, rgba(0,0,0,0.58), rgba(0,0,0,0.72)),
+    url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-blend-mode: overlay;
+  color: var(--lime-1);
+  padding: 36px 20px;
+  text-align: center;
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+  box-shadow: 0 6px 22px var(--shadow-dark);
+  border-bottom: 1px solid rgba(168,255,0,0.04);
+  backdrop-filter: blur(2px);
+  position: relative;
+  z-index: 5;
+}
+
+/* Decorative tint overlay to add a shiny lime cast */
+header::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(120,255,0,0.02), rgba(120,255,0,0.015));
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* Nav */
+nav {
+  background: linear-gradient(180deg, rgba(0,0,0,0.75), rgba(0,0,0,0.9));
+  padding: 12px 18px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+  z-index: 10;
+  position: sticky;
+  top: 0;
+}
+
+/* Animated gradient for nav buttons (subtle by default) */
+/* keep original button element styling but restyle */
+nav button {
+  background: linear-gradient(90deg,
+              rgba(168,255,0,var(--grad-alpha)),
+              rgba(199,255,76,var(--grad-alpha)),
+              rgba(118,185,0,var(--grad-alpha)));
+  background-size: 300% 100%;
+  animation: gradientShift 8s ease infinite;
+  color: var(--lime-2);
+  border: 1px solid rgba(255,255,255,0.02);
+  font-size: 16px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, color 0.15s ease, background 0.15s ease;
+  text-shadow: 0 1px 0 rgba(0,0,0,0.6);
+}
+
+/* hover + active */
+nav button:hover {
+  transform: translateY(-3px);
+  color: var(--bg-900);
+  background: linear-gradient(90deg, var(--lime-1), var(--lime-2), var(--lime-3));
+  background-size: 200% 100%;
+  animation: gradientShift 3s ease infinite; /* speed up on hover */
+  box-shadow: 0 8px 24px rgba(168,255,0,0.08), 0 1px 0 rgba(0,0,0,0.6) inset;
+  border: 1px solid rgba(168,255,0,0.12);
+}
+
+nav button:active {
+  transform: translateY(-1px) scale(0.995);
+}
+
+/* Main content container */
+main {
+  padding: 30px 20px;
+  max-width: 1000px;
+  margin: 30px auto;
+}
+
+/* Forms and panels */
+form {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding: 26px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  border: 1px solid var(--card-border);
+  transition: box-shadow 0.25s ease, transform 0.18s ease;
+}
+
+/* subtle lift on hover for interactivity feel */
+form:hover {
+  box-shadow: 0 14px 40px rgba(0,0,0,0.7);
+  transform: translateY(-4px);
+}
+
+/* inputs and selects */
+input, select {
+  width: 100%;
+  padding: 10px;
+  margin: 12px 0;
+  border: 1px solid rgba(255,255,255,0.03);
+  border-radius: 8px;
+  font-size: 15px;
+  background: rgba(255,255,255,0.01);
+  color: var(--text);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+input::placeholder, select option { color: rgba(230,255,230,0.5); }
+
+input:focus, select:focus {
+  border-color: var(--lime-1);
+  outline: none;
+  box-shadow: 0 6px 18px rgba(168,255,0,0.06);
+}
+
+/* Primary buttons */
+/* apply animated gradient to primary buttons as well for consistent feel */
+button[type="submit"],
+button {
+  background: linear-gradient(90deg, var(--lime-1), var(--lime-2), var(--lime-3));
+  background-size: 300% 100%;
+  animation: gradientShift 6s ease infinite;
+  color: #000;
+  padding: 12px;
+  border: none;
+  width: 100%;
+  font-size: 16px;
+  border-radius: 10px;
+  margin-top: 12px;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+button[type="submit"]:hover,
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(168,255,0,0.12);
+}
+
+/* Panels such as results, history, tips, about — keep same selectors as original */
+.results, .history, .tips, .about {
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.015));
+  padding: 25px;
+  margin-top: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.6);
+  border: 1px solid var(--card-border);
+  transition: transform 0.18s ease;
+}
+
+.results:hover, .tips:hover, .about:hover {
+  transform: translateY(-4px);
+}
+
+/* unordered lists readability */
+ul {
+  padding-left: 20px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.85), rgba(0,0,0,0.95));
+  color: var(--lime-2);
+  margin-top: 50px;
+  font-size: 14px;
+  border-top: 1px solid rgba(168,255,0,0.04);
+}
+
+/* Canvas charts */
+canvas {
+  margin: 20px auto;
+  display: block;
+  max-width: 600px;
+  background: transparent;
+}
+
+/* Responsive behavior */
+@media (max-width: 600px) {
+  nav {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav button {
+    margin: 6px 0;
+    width: calc(100% - 40px);
+  }
+
+  header {
+    padding: 24px 14px;
+    background-position: center 30%;
+  }
+}
+
+/* Maintain some of the original custom selectors from your previous style file,
+   but adjust them to the new dark + lime aesthetic. */
+
+/* Target the Home tab's .results container */
+main#root .results {
+  position: relative;
+  background-color: rgba(0,0,0,0.6);
+  background-blend-mode: overlay;
+  border-radius: 12px;
+  border: 1px solid rgba(168,255,0,0.03);
+  padding: 26px;
+}
+
+/* Welcome section animation helpers */
+@keyframes fadeInLime {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+main#root .results > h2,
+main#root .results > p:first-of-type {
+  animation: fadeInLime 1.4s ease-in-out;
+  color: var(--muted);
+}
+
+/* card backgrounds inside sections */
+main#root .results > div[style*="flex-direction: column"] > div[style*="background: #e8f5e9"] {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)) !important;
+  border-radius: 10px;
+  border: 1px solid rgba(168,255,0,0.03);
+}
+
+/* Decorative ::before overlays switched to moody imagery with lime tint */
+main#root .results > div[style*="flex-direction: column"] > div[style*="background: #e8f5e9"]:nth-child(1)::before,
+main#root .results > div[style*="flex-direction: column"] > div[style*="background: #e8f5e9"]:nth-child(2)::before,
+main#root .results > div[style*="flex-direction: column"] > div[style*="background: #e8f5e9"]:nth-child(3)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.08; /* subtle */
+  filter: brightness(0.45) contrast(1.1) saturate(0.9) hue-rotate(-20deg);
+  z-index: -1;
+}
+
+/* Example images for the three card ::before elements (kept subtle) */
+main#root .results > div[style*="flex-direction: column"] > div[style*="background: #e8f5e9"]:nth-child(1)::before {
+  background-image: url('https://images.pexels.com/photos/1050742/pexels-photo-1050742.jpeg');
+}
+main#root .results > div[style*="flex-direction: column"] > div[style*="background: #e8f5e9"]:nth-child(2)::before {
+  background-image: url('https://cdn.pixabay.com/photo/2021/09/07/07/14/solar-panels-6603032_1280.jpg');
+}
+main#root .results > div[style*="flex-direction: column"] > div[style*="background: #e8f5e9"]:nth-child(3)::before {
+  background-image: url('https://images.unsplash.com/photo-1599059813008-11265ba4b4ce');
+}
+
+/* Why Track & Get Started sections - darkened with lime text */
+main#root .results > div[style*="marginTop: 30px"][style*="textAlign: left"],
+main#root .results > div[style*="marginTop: 30px"][style*="textAlign: center"] {
+  position: relative;
+  background: rgba(10, 20, 10, 0.7);
+  color: var(--muted);
+  padding: 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(168,255,0,0.03);
+}
+
+/* Buttons inside get started ensure contrast */
+main#root .results > div[style*="marginTop: 30px"][style*="textAlign: center"] button {
+  background: linear-gradient(90deg, var(--lime-1), var(--lime-2)) !important;
+  color: #000 !important;
+  text-shadow: none;
+}
+
+/* Make sure particles canvas is darker for contrast with lime particles */
+#particles-js canvas {
+  filter: brightness(0.6) contrast(1.15);
+}
+
+/* Respect users who prefer reduced motion - turn off gradient animation */
+@media (prefers-reduced-motion: reduce) {
+  nav button,
+  button[type="submit"],
+  button {
+    animation: none !important;
+    transition: none !important;
+  }
+}
