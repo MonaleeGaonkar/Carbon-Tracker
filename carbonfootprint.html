@@ -1,45 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carbon Footprint Tracker</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carbon Footprint Tracker</title>
 
-  <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style.css" />
 
-  <!-- external libraries -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
-  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
-</head>
-<body>
-  <div id="particles-js"></div>
+    <!-- external libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script
+      src="https://unpkg.com/react@18/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="particles-js"></div>
 
-  <header>
-    <h1>Carbon Footprint Tracker</h1>
-  </header>
-  
-  <nav>
-    <button onclick="setPage('home')">Home</button>
-    <button onclick="setPage('tracker')">Personal Tracker</button>
-    <button onclick="setPage('industrial')">Industrial Tracker</button>
-    <button onclick="setPage('city')">City Tracker</button>
-    <button onclick="setPage('tips')">Tips</button>
-    <button onclick="setPage('about')">About</button>
-  </nav>
+    <header>
+      <h1>Carbon Footprint Tracker</h1>
+    </header>
 
-  <main id="root"></main>
+    <nav>
+      <button onclick="setPage('home')">Home</button>
+      <button onclick="setPage('tracker')">Personal Tracker</button>
+      <button onclick="setPage('industrial')">Industrial Tracker</button>
+      <button onclick="setPage('city')">City Tracker</button>
+      <button onclick="setPage('tips')">Tips</button>
+      <button onclick="setPage('about')">About</button>
+    </nav>
 
-  <footer>
-    &copy; 2025 Carbon Tracker | Built with React + Love 🌱
-  </footer>
+    <main id="root"></main>
 
-  <!-- FIXED: add data-presets so Babel compiles external JSX -->
-  <script src="app.js" type="text/babel" data-presets="react"></script>
+    <footer>&copy; 2025 Carbon Tracker | Built with React + Love 🌱</footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script src="gamify.js"></script>
-</body>
+    <!-- FIXED: add data-presets so Babel compiles external JSX -->
+    <script src="app.js" type="text/babel" data-presets="react"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="gamify.js"></script>
+  </body>
 </html>
